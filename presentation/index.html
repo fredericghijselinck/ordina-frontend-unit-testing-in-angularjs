@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Unit Testing in AngularJS - Ordina</title>
+
+    <meta name="description" content="Unit Testing in AngularJS">
+    <meta name="author" content="Dennis Jaamann & Fr&eacute;d&eacute;ric Ghijselinck">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides" id="ordina">
+
+        <!-- start -->
+        <section id="start" style="text-align: center">
+
+            <img src="img/ordina_l.png" alt="Ordina" class="logo"/>
+
+            <h1>Unit Testing in AngularJS</h1>
+
+            <p>
+                Dennis Jaamann &mdash; Fr&eacute;d&eacute;ric Ghijselinck
+                <br />
+                <a href="https://twitter.com/dennisjaamann">@dennisjaamann</a> &mdash; <a href="https://twitter.com/f_ghijselinck">@f_ghijselinck</a>
+            </p>
+            <p>
+                <strong>CC Front-end &amp; UX</strong>
+            </p>
+
+        </section>
+        <!-- // start -->
+
+        <!-- intro -->
+        <section>
+
+            <section>
+                <h2>
+                    Unit Testing in AngularJS
+                </h2>
+
+                <ol>
+                    <li>Unit testing JavaScript</li>
+                    <li>Karma</li>
+                    <li>Unit testing AngularJS
+                        <ol>
+                            <li>Controller</li>
+                            <li>Service</li>
+                            <li>Directive</li>
+                        </ol>
+                    </li>
+                    <li>Coverage reports + sonar</li>
+                </ol>
+                <aside class="notes">
+                    <p>some notes ...</p>
+                    <ul>
+                        <li>a list item in notes ...</li>
+                        <li>another list item in notes ...</li>
+                    </ul>
+                </aside>
+            </section>
+
+        </section>
+        <!-- // intro -->
+
+        <!-- js unit testing -->
+        <section>
+
+            <section>
+                <h2>
+                    Unit testing JavaScript
+                </h2>
+
+                <p>...</p>
+            </section>
+
+        </section>
+        <!-- // js unit testing -->
+
+        <!-- karma -->
+        <section>
+
+            <section>
+                <h2>
+                    Karma
+                </h2>
+                <p>Karma = unit test runner (by angular core team)</p>
+                <ul>
+                    <li>configuration file</li>
+                    <li>test suites</li>
+                    <li>headless/real browser</li>
+                </ul>
+                <p>Automagically generate a config file</p>
+                <pre>
+                    <code data-trim class="bash">
+karma init
+                    </code>
+                </pre>
+                <p>Simply run the test suite</p>
+                <pre>
+                    <code data-trim class="bash">
+karma start
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h2>
+                    Karma
+                </h2>
+                <p>(mocha, jasmine, qunit)</p>
+            </section>
+
+            <section>
+                <h2>
+                    Jasmine
+                </h2>
+                <p>Jasmine = unit testing <p>
+                <p>▪ test suite with specs:</p>
+                <pre>
+                    <code data-trim class="js">
+describe("A suite", function() {
+  it("contains spec with an expectation", function() {
+    expect(true).toBe(true);
+  });
+});
+                    </code>
+                </pre>
+                <pre>
+                    <code data-trim class="js">
+describe("A suite is just a function", function() {
+  var a;
+  it("and so is a spec", function() {
+    a = true;
+    expect(a).toBe(true);
+  });
+});
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h2>
+                    Jasmine
+                </h2>
+                <ul>included matchers:
+                    <li>expect().toBe();</li>
+                    <li>expect().toEqual();</li>
+                    <li>expect().toMatch();</li>
+                    <li>expect().toBeDefined();</li>
+                    <li>expect().toBeUnDefined();</li>
+                    <li>expect().toBeNull();</li>
+                    <li>expect().toBeTruthy();</li>
+                    <li>expect().toBeFalsy();</li>
+                    <li>expect().toContain();</li>
+                    <li>expect().toBeLessThan();</li>
+                    <li>expect().toBeGreaterThan();</li>
+                    <li>expect().toBeCloseTo();</li>
+                    <li>expect().toThrow();</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    Jasmine
+                </h2>
+                <p>setup & teardown</p>
+                <p>included matchers:</p>
+                <ul>
+                    <li>beforeEach()</li>
+                    <li>afterEach()</li>
+                    <li>beforeAll()</li>
+                    <li>afterAll()</li>
+                </ul>
+                <p>Angular test</p>
+                <ul>
+                    <li>getting the module
+                        <pre>
+                            <code data-trim class="js">
+beforeEach(module('app'));
+                            </code>
+                        </pre>
+                    </li>
+                    <li>injecting the controller
+                        <pre>
+                            <code data-trim class="js">
+beforeEach(inject(function($controller, $rootScope) {
+    controller = $controller;
+    scope = $rootscope.$new();
+}));
+                            </code>
+                        </pre>
+                    </li>
+                </ul>
+            </section>
+
+        </section>
+        <!-- // karma -->
+
+        <!-- angularjs unit testing -->
+        <section>
+
+            <section>
+                <h2>
+                    Unit testing AngularJS
+                </h2>
+
+                <p>...</p>
+            </section>
+
+            <section>
+                <h2>
+                    Unit testing AngularJS - Controller
+                </h2>
+                <pre>
+                    <code data-trim class="js">
+'use strict';
+
+anguler.module('app')
+    .controller('FakeController', function($scope, someRecords) {
+        $scope.someRecords = someRecords;
+});
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h2>
+                    Unit testing AngularJS - Controller
+                </h2>
+                <pre>
+                    <code data-trim class="js">
+describe("FakeController", function() {
+
+    var someRecords;
+
+    beforeEach(module('app'));
+
+    beforeEach(inject(function($rootScope, $controller) {
+        $scope = $rootScope.$new();
+        givenSomeRecords();
+        dependencies = {
+            $scope : $scope,
+            someRecords : someRecords
+        };
+        $controller('FakeController', dependencies);
+    });
+
+    it('when initialized', function() {
+        thenSomeRecordsAreOnScope();
+    });
+
+    function givenSomeRecords() {
+        someRecords = {
+            test : 'test'
+        };
+    };
+
+    function thenSomeRecordsAreOnScope() {
+        expect($scope.someRecords).toEqual(someRecords);
+    }
+
+});
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h2>
+                    Unit testing AngularJS - Service
+                </h2>
+                <pre>
+                    <code data-trim class="js">
+'use strict';
+
+anguler.module('app')
+    .service('FakeService', function($http) {
+
+    this.getIsFake = function() {
+        return $http.get('fakeService/isFake');
+    };
+
+});
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h2>
+                    Unit testing AngularJS - Service
+                </h2>
+                <pre>
+                    <code data-trim class="js">
+describe('FakeService', function() {
+
+    var resolved;
+
+    beforeEach(module('app'));
+
+    beforeEach(inject(function(_$httpBackend_, _FakeService_) {
+        $httpBackend = _$httpBackend_;
+        FakeService = _FakeService_;
+    }));
+
+    it('Resolver returns resolved promise', function() {
+        givenMockIsFake();
+        whenGetIsFakeCalled();
+        thenPromiseIsResolved();
+    });
+
+    function givenMockIsFake() {
+        $httpBackend.expectGET('fakeService/isFake').respond(200, 'true');
+    }
+
+    function whenGetIsFakeCalled() {
+        FakeService.getIsFake().then(function(promise) {
+            resolved = true;
+        });
+        $httpBackend.flush();
+    }
+
+    function thenPromiseIsResolved() {
+        expect(resolved).toBeTruthy();
+    }
+});
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h2>
+                    Unit testing AngularJS - Directive
+                </h2>
+                <p>The directive:</p>
+                <pre>
+                    <code data-trim class="js">
+'use strict';
+
+anguler.module('app').directive('fixedPhoneNumberFormat', function() {
+    return {
+        scope : {
+            fixedPhoneNumberFormat : '@'
+        },
+        link : function(scope, element, attrs) {
+            attrs.$observe('fixedPhoneNumberFormat', function(fixedPhoneNumber) {
+                if (_.isEqual(fixedPhoneNumber.length, 8){
+                    fixedPhoneNumber = "0" + fixedPhoneNumber;
+                }
+                element.text(fixedPhoneNumber.substring(0, 2)
+                    + " / " + fixedPhoneNumber.substring(2, 5)
+                    + " " + fixedPhoneNumber.substring(5, 7)
+                    + " " + fixedPhoneNumber.substring(7, 9));
+            });
+        }
+    };
+});
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h2>
+                    Unit testing AngularJS - Directive
+                </h2>
+                <p>The directive test:</p>
+                <pre>
+                    <code data-trim class="js">
+describe('FixedPhoneNumberDirective', function() {
+    var element = {};
+    var formattedFixedPhoneNumber;
+
+    beforeEach(module('app'));
+
+    beforeEach(inject(function($rootScope, _$compile_) {
+        $scope = $rootScope.$new();
+        $compile = _$compile_;
+    }));
+
+    it("formatfixedphonewithcode", function() {
+        givenTemplate();
+        givenFixedPhoneNumberWithNineDigits();
+        givenFormatFixedPhoneNumber();
+        whenFormatFixedPhoneNumber();
+        thenFixedPhoneNumberIsFormatted();
+    });
+
+    function givenTemplate() {
+        var template = '<div data-fixed-phone-number-format="{{fixedPoneNumber}}">{{fixedPhoneNumber}}</div>';
+        element = $compile(template)($scope);
+    }
+
+    function givenFixedPhoneNumberWithNineDigits() {
+        $scope.fixedPhoneNumber = "025021910";
+    }
+
+    function givenFormattedFixedPhoneNumber() {
+        formattedFixedPhoneNumber = "02 / 502 19 10";
+    }
+
+    function whenFormatFixedPhoneNumber() {
+        $scope.$digest();
+    }
+
+    function thenFixedPhoneNumberIsFormatted() {
+        expect(element.text()).toBe(formattedFixedPhoneNumber);
+    }
+});
+                    </code>
+                </pre>
+            </section>
+
+        </section>
+        <!-- // angularjs unit testing -->
+
+        <!-- reports -->
+        <section>
+
+            <section>
+                <h2>
+                    Coverage reports + sonar
+                </h2>
+
+                <p>...</p>
+            </section>
+
+        </section>
+        <!-- // reports -->
+
+        <!-- documentation -->
+        <section>
+            <h2>Documentation / links etc.</h2>
+            <ul>
+                <li><a href="https://angularjs.org/">AngularJS website</a></li>
+            </ul>
+        </section>
+        <!-- // documentation -->
+
+        <!-- thanks -->
+        <section style="text-align: center">
+
+            <img src="img/ordina_l.png" alt="Ordina" class="logo"/>
+
+            <h1>Thaaaaaaanks!</h1>
+
+            <a href="https://www.youtube.com/watch?v=DHHKU4znvo8&autoplay=1" id="thanks">
+                <img src="img/thanks.jpg" alt="Thaaaaaaanks"/>
+            </a>
+
+            <p>
+                Dennis Jaamann &mdash; Fr&eacute;d&eacute;ric Ghijselinck
+                <br />
+                <a href="https://twitter.com/dennisjaamann">@dennisjaamann</a> &mdash; <a href="https://twitter.com/f_ghijselinck">@f_ghijselinck</a>
+            </p>
+
+            <p>
+                <strong>CC Front-end &amp; UX</strong>
+            </p>
+
+        </section>
+        <!-- // thanks -->
+
+    </div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {src: 'plugin/zoom-js/zoom.js', async: true},
+            {src: 'plugin/notes/notes.js', async: true}
+        ]
+    });
+
+</script>
+
+</body>
+</html>
