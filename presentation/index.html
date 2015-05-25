@@ -12,7 +12,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/beige.css" id="theme">
@@ -51,9 +52,11 @@
 
             <p>
                 Dennis Jaamann &mdash; Fr&eacute;d&eacute;ric Ghijselinck
-                <br />
-                <a href="https://twitter.com/dennisjaamann">@dennisjaamann</a> &mdash; <a href="https://twitter.com/f_ghijselinck">@f_ghijselinck</a>
+                <br/>
+                <a href="https://twitter.com/dennisjaamann">@dennisjaamann</a> &mdash; <a
+                    href="https://twitter.com/f_ghijselinck">@f_ghijselinck</a>
             </p>
+
             <p>
                 <strong>CC Front-end &amp; UX</strong>
             </p>
@@ -69,9 +72,14 @@
                     Unit Testing in AngularJS
                 </h2>
 
-                <ol>
+                <ul>
                     <li>Unit testing JavaScript</li>
                     <li>Karma</li>
+                    <li>Unit testing frameworks
+                        <ul>QUnit</ul>
+                        <ul>Mocha</ul>
+                        <ul>Jasmine</ul>
+                    </li>
                     <li>Unit testing AngularJS
                         <ol>
                             <li>Controller</li>
@@ -80,7 +88,7 @@
                         </ol>
                     </li>
                     <li>Coverage reports + sonar</li>
-                </ol>
+                </ul>
                 <aside class="notes">
                     <p>some notes ...</p>
                     <ul>
@@ -100,8 +108,40 @@
                 <h2>
                     Unit testing JavaScript
                 </h2>
+                <ul>
+                    <li>Testing JavaScript is hard</li>
+                    <li>Mixed with HTML</li>
+                    <li>Inline scripts</li>
+                    <li>No real classes</li>
+                    <li>No real modules</li>
+                </ul>
+            </section>
 
-                <p>...</p>
+            <section>
+                <h2>
+                    Unit testing JavaScript - Pitfalls
+                </h2>
+                <ul>
+                    <li>DOM interactions</li>
+                    <li>AJAX</li>
+                    <li>Event handlers</li>
+                    <li>Timeouts / Intervals</li>
+                    <li>Promises</li>
+                    <li>Basically everything asynchronous</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    Unit testing JavaScript - What do we need?
+                </h2>
+                <ul>
+                    <li>Test Runner</li>
+                    <li>Test framework</li>
+                    <li>Assertions (matchers)</li>
+                    <li>Ways to mock</li>
+                    <li>...</li>
+                </ul>
             </section>
 
         </section>
@@ -114,6 +154,7 @@
                 <h2>
                     Karma
                 </h2>
+
                 <p>Karma = unit test runner (by angular core team)</p>
                 <ul>
                     <li>configuration file</li>
@@ -123,57 +164,115 @@
                 <p>Automagically generate a config file</p>
                 <pre>
                     <code data-trim class="bash">
-karma init
+                        karma init
                     </code>
                 </pre>
                 <p>Simply run the test suite</p>
                 <pre>
                     <code data-trim class="bash">
-karma start
+                        karma start
                     </code>
                 </pre>
             </section>
 
             <section>
                 <h2>
-                    Karma
+                    Jasmine
                 </h2>
-                <p>(mocha, jasmine, qunit)</p>
+
+                <p>setup & teardown</p>
+
+                <p>included matchers:</p>
+                <ul>
+                    <li>beforeEach()</li>
+                    <li>afterEach()</li>
+                    <li>beforeAll()</li>
+                    <li>afterAll()</li>
+                </ul>
+                <p>Angular test</p>
+                <ul>
+                    <li>getting the module
+                        <pre>
+                            <code data-trim class="js">
+                                beforeEach(module('app'));
+                            </code>
+                        </pre>
+                    </li>
+                    <li>injecting the controller
+                        <pre>
+                            <code data-trim class="js">
+                                beforeEach(inject(function($controller, $rootScope) {
+                                controller = $controller;
+                                scope = $rootscope.$new();
+                                }));
+                            </code>
+                        </pre>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    PhantomJS
+                </h2>
+
+            </section>
+
+        </section>
+        <!-- // karma -->
+
+        <!-- js unit testing frameworks -->
+        <section>
+            <section>
+                <h2>
+                    Unit testing frameworks
+                </h2>
+            </section>
+
+            <section>
+                <h2>
+                    Qunit
+                </h2>
+            </section>
+
+            <section>
+                <h2>
+                    Mocha
+                </h2>
             </section>
 
             <section>
                 <h2>
                     Jasmine
                 </h2>
-                <p>Jasmine = unit testing <p>
                 <p>▪ test suite with specs:</p>
                 <pre>
                     <code data-trim class="js">
-describe("A suite", function() {
-  it("contains spec with an expectation", function() {
-    expect(true).toBe(true);
-  });
-});
+                        describe("A suite", function() {
+                        it("contains spec with an expectation", function() {
+                        expect(true).toBe(true);
+                        });
+                        });
                     </code>
                 </pre>
                 <pre>
                     <code data-trim class="js">
-describe("A suite is just a function", function() {
-  var a;
-  it("and so is a spec", function() {
-    a = true;
-    expect(a).toBe(true);
-  });
-});
+                        describe("A suite is just a function", function() {
+                        var a;
+                        it("and so is a spec", function() {
+                        a = true;
+                        expect(a).toBe(true);
+                        });
+                        });
                     </code>
                 </pre>
             </section>
 
             <section>
                 <h2>
-                    Jasmine
+                    Jasmine - Matchers
                 </h2>
-                <ul>included matchers:
+                <ul>
                     <li>expect().toBe();</li>
                     <li>expect().toEqual();</li>
                     <li>expect().toMatch();</li>
@@ -192,40 +291,15 @@ describe("A suite is just a function", function() {
 
             <section>
                 <h2>
-                    Jasmine
+                    Jasmine - Spies
                 </h2>
-                <p>setup & teardown</p>
-                <p>included matchers:</p>
-                <ul>
-                    <li>beforeEach()</li>
-                    <li>afterEach()</li>
-                    <li>beforeAll()</li>
-                    <li>afterAll()</li>
-                </ul>
-                <p>Angular test</p>
-                <ul>
-                    <li>getting the module
-                        <pre>
-                            <code data-trim class="js">
-beforeEach(module('app'));
-                            </code>
-                        </pre>
-                    </li>
-                    <li>injecting the controller
-                        <pre>
-                            <code data-trim class="js">
-beforeEach(inject(function($controller, $rootScope) {
-    controller = $controller;
-    scope = $rootscope.$new();
-}));
-                            </code>
-                        </pre>
-                    </li>
+                <ul>spies
+
                 </ul>
             </section>
 
         </section>
-        <!-- // karma -->
+        <!-- // js unit testing frameworks -->
 
         <!-- angularjs unit testing -->
         <section>
@@ -244,12 +318,12 @@ beforeEach(inject(function($controller, $rootScope) {
                 </h2>
                 <pre>
                     <code data-trim class="js">
-'use strict';
+                        'use strict';
 
-anguler.module('app')
-    .controller('FakeController', function($scope, someRecords) {
-        $scope.someRecords = someRecords;
-});
+                        anguler.module('app')
+                        .controller('FakeController', function($scope, someRecords) {
+                        $scope.someRecords = someRecords;
+                        });
                     </code>
                 </pre>
             </section>
@@ -260,37 +334,37 @@ anguler.module('app')
                 </h2>
                 <pre>
                     <code data-trim class="js">
-describe("FakeController", function() {
+                        describe("FakeController", function() {
 
-    var someRecords;
+                        var someRecords;
 
-    beforeEach(module('app'));
+                        beforeEach(module('app'));
 
-    beforeEach(inject(function($rootScope, $controller) {
-        $scope = $rootScope.$new();
-        givenSomeRecords();
-        dependencies = {
-            $scope : $scope,
-            someRecords : someRecords
-        };
-        $controller('FakeController', dependencies);
-    });
+                        beforeEach(inject(function($rootScope, $controller) {
+                        $scope = $rootScope.$new();
+                        givenSomeRecords();
+                        dependencies = {
+                        $scope : $scope,
+                        someRecords : someRecords
+                        };
+                        $controller('FakeController', dependencies);
+                        });
 
-    it('when initialized', function() {
-        thenSomeRecordsAreOnScope();
-    });
+                        it('when initialized', function() {
+                        thenSomeRecordsAreOnScope();
+                        });
 
-    function givenSomeRecords() {
-        someRecords = {
-            test : 'test'
-        };
-    };
+                        function givenSomeRecords() {
+                        someRecords = {
+                        test : 'test'
+                        };
+                        };
 
-    function thenSomeRecordsAreOnScope() {
-        expect($scope.someRecords).toEqual(someRecords);
-    }
+                        function thenSomeRecordsAreOnScope() {
+                        expect($scope.someRecords).toEqual(someRecords);
+                        }
 
-});
+                        });
                     </code>
                 </pre>
             </section>
@@ -301,16 +375,16 @@ describe("FakeController", function() {
                 </h2>
                 <pre>
                     <code data-trim class="js">
-'use strict';
+                        'use strict';
 
-anguler.module('app')
-    .service('FakeService', function($http) {
+                        anguler.module('app')
+                        .service('FakeService', function($http) {
 
-    this.getIsFake = function() {
-        return $http.get('fakeService/isFake');
-    };
+                        this.getIsFake = function() {
+                        return $http.get('fakeService/isFake');
+                        };
 
-});
+                        });
                     </code>
                 </pre>
             </section>
@@ -321,38 +395,38 @@ anguler.module('app')
                 </h2>
                 <pre>
                     <code data-trim class="js">
-describe('FakeService', function() {
+                        describe('FakeService', function() {
 
-    var resolved;
+                        var resolved;
 
-    beforeEach(module('app'));
+                        beforeEach(module('app'));
 
-    beforeEach(inject(function(_$httpBackend_, _FakeService_) {
-        $httpBackend = _$httpBackend_;
-        FakeService = _FakeService_;
-    }));
+                        beforeEach(inject(function(_$httpBackend_, _FakeService_) {
+                        $httpBackend = _$httpBackend_;
+                        FakeService = _FakeService_;
+                        }));
 
-    it('Resolver returns resolved promise', function() {
-        givenMockIsFake();
-        whenGetIsFakeCalled();
-        thenPromiseIsResolved();
-    });
+                        it('Resolver returns resolved promise', function() {
+                        givenMockIsFake();
+                        whenGetIsFakeCalled();
+                        thenPromiseIsResolved();
+                        });
 
-    function givenMockIsFake() {
-        $httpBackend.expectGET('fakeService/isFake').respond(200, 'true');
-    }
+                        function givenMockIsFake() {
+                        $httpBackend.expectGET('fakeService/isFake').respond(200, 'true');
+                        }
 
-    function whenGetIsFakeCalled() {
-        FakeService.getIsFake().then(function(promise) {
-            resolved = true;
-        });
-        $httpBackend.flush();
-    }
+                        function whenGetIsFakeCalled() {
+                        FakeService.getIsFake().then(function(promise) {
+                        resolved = true;
+                        });
+                        $httpBackend.flush();
+                        }
 
-    function thenPromiseIsResolved() {
-        expect(resolved).toBeTruthy();
-    }
-});
+                        function thenPromiseIsResolved() {
+                        expect(resolved).toBeTruthy();
+                        }
+                        });
                     </code>
                 </pre>
             </section>
@@ -361,29 +435,30 @@ describe('FakeService', function() {
                 <h2>
                     Unit testing AngularJS - Directive
                 </h2>
+
                 <p>The directive:</p>
                 <pre>
                     <code data-trim class="js">
-'use strict';
+                        'use strict';
 
-anguler.module('app').directive('fixedPhoneNumberFormat', function() {
-    return {
-        scope : {
-            fixedPhoneNumberFormat : '@'
-        },
-        link : function(scope, element, attrs) {
-            attrs.$observe('fixedPhoneNumberFormat', function(fixedPhoneNumber) {
-                if (_.isEqual(fixedPhoneNumber.length, 8){
-                    fixedPhoneNumber = "0" + fixedPhoneNumber;
-                }
-                element.text(fixedPhoneNumber.substring(0, 2)
-                    + " / " + fixedPhoneNumber.substring(2, 5)
-                    + " " + fixedPhoneNumber.substring(5, 7)
-                    + " " + fixedPhoneNumber.substring(7, 9));
-            });
-        }
-    };
-});
+                        anguler.module('app').directive('fixedPhoneNumberFormat', function() {
+                        return {
+                        scope : {
+                        fixedPhoneNumberFormat : '@'
+                        },
+                        link : function(scope, element, attrs) {
+                        attrs.$observe('fixedPhoneNumberFormat', function(fixedPhoneNumber) {
+                        if (_.isEqual(fixedPhoneNumber.length, 8){
+                        fixedPhoneNumber = "0" + fixedPhoneNumber;
+                        }
+                        element.text(fixedPhoneNumber.substring(0, 2)
+                        + " / " + fixedPhoneNumber.substring(2, 5)
+                        + " " + fixedPhoneNumber.substring(5, 7)
+                        + " " + fixedPhoneNumber.substring(7, 9));
+                        });
+                        }
+                        };
+                        });
                     </code>
                 </pre>
             </section>
@@ -392,49 +467,52 @@ anguler.module('app').directive('fixedPhoneNumberFormat', function() {
                 <h2>
                     Unit testing AngularJS - Directive
                 </h2>
+
                 <p>The directive test:</p>
                 <pre>
                     <code data-trim class="js">
-describe('FixedPhoneNumberDirective', function() {
-    var element = {};
-    var formattedFixedPhoneNumber;
+                        describe('FixedPhoneNumberDirective', function() {
+                        var element = {};
+                        var formattedFixedPhoneNumber;
 
-    beforeEach(module('app'));
+                        beforeEach(module('app'));
 
-    beforeEach(inject(function($rootScope, _$compile_) {
-        $scope = $rootScope.$new();
-        $compile = _$compile_;
-    }));
+                        beforeEach(inject(function($rootScope, _$compile_) {
+                        $scope = $rootScope.$new();
+                        $compile = _$compile_;
+                        }));
 
-    it("formatfixedphonewithcode", function() {
-        givenTemplate();
-        givenFixedPhoneNumberWithNineDigits();
-        givenFormatFixedPhoneNumber();
-        whenFormatFixedPhoneNumber();
-        thenFixedPhoneNumberIsFormatted();
-    });
+                        it("formatfixedphonewithcode", function() {
+                        givenTemplate();
+                        givenFixedPhoneNumberWithNineDigits();
+                        givenFormatFixedPhoneNumber();
+                        whenFormatFixedPhoneNumber();
+                        thenFixedPhoneNumberIsFormatted();
+                        });
 
-    function givenTemplate() {
-        var template = '<div data-fixed-phone-number-format="{{fixedPoneNumber}}">{{fixedPhoneNumber}}</div>';
-        element = $compile(template)($scope);
-    }
+                        function givenTemplate() {
+                        var template = '
+                        <div data-fixed-phone-number-format="{{fixedPoneNumber}}">{{fixedPhoneNumber}}</div>
+                        ';
+                        element = $compile(template)($scope);
+                        }
 
-    function givenFixedPhoneNumberWithNineDigits() {
-        $scope.fixedPhoneNumber = "025021910";
-    }
+                        function givenFixedPhoneNumberWithNineDigits() {
+                        $scope.fixedPhoneNumber = "025021910";
+                        }
 
-    function givenFormattedFixedPhoneNumber() {
-        formattedFixedPhoneNumber = "02 / 502 19 10";
-    }
+                        function givenFormattedFixedPhoneNumber() {
+                        formattedFixedPhoneNumber = "02 / 502 19 10";
+                        }
 
-    function whenFormatFixedPhoneNumber() {
-        $scope.$digest();
-    }
+                        function whenFormatFixedPhoneNumber() {
+                        $scope.$digest();
+                        }
 
-    function thenFixedPhoneNumberIsFormatted() {
-        expect(element.text()).toBe(formattedFixedPhoneNumber);
-    }
-});
+                        function thenFixedPhoneNumberIsFormatted() {
+                        expect(element.text()).toBe(formattedFixedPhoneNumber);
+                        }
+                        });
                     </code>
                 </pre>
             </section>
@@ -461,6 +539,10 @@ describe('FixedPhoneNumberDirective', function() {
             <h2>Documentation / links etc.</h2>
             <ul>
                 <li><a href="https://angularjs.org/">AngularJS website</a></li>
+                <li><a href="https://qunitjs.com/">QUnit website</a></li>
+                <li><a href="http://mochajs.org/">Mocha website</a></li>
+                <li><a href="http://jasmine.github.io/">Jasmine website</a></li>
+                <li><a href="http://karma-runner.github.io/">Karma website</a></li>
             </ul>
         </section>
         <!-- // documentation -->
@@ -478,8 +560,9 @@ describe('FixedPhoneNumberDirective', function() {
 
             <p>
                 Dennis Jaamann &mdash; Fr&eacute;d&eacute;ric Ghijselinck
-                <br />
-                <a href="https://twitter.com/dennisjaamann">@dennisjaamann</a> &mdash; <a href="https://twitter.com/f_ghijselinck">@f_ghijselinck</a>
+                <br/>
+                <a href="https://twitter.com/dennisjaamann">@dennisjaamann</a> &mdash; <a
+                    href="https://twitter.com/f_ghijselinck">@f_ghijselinck</a>
             </p>
 
             <p>
