@@ -1119,13 +1119,6 @@ body {
   margin: 0 auto; }
   #ordina img.logo {
     margin-bottom: 40px; }
-  #ordina img#zurb {
-    background: #ddd;
-    width: 50%; }
-  #ordina img#bootstrap {
-    background: #ddd;
-    width: 150px;
-    height: 150px; }
 #ordina h1 {
   font-size: 1.6em; }
 #ordina h2 {
@@ -1155,7 +1148,6 @@ body {
   width: 100%; }
   #ordina pre code {
     padding: 15px;
-    font-size: 1.2em;
     max-height: none; }
 #ordina .table-full {
   width: 100%; }
