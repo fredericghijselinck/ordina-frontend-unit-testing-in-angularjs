@@ -197,7 +197,42 @@ karma start
                 <h2>
                     PhantomJS
                 </h2>
-                <p>...</p>
+                <ul>
+                    <li>Headless browser</li>
+                    <li>No GUI</li>
+                    <li>Tests run faster</li>
+                    <li>Only suited for unit tests, not integration tests</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    PhantomJS karma configuration
+                </h2>
+                <ul>
+                    <li>Install PhantomJS launcher</li>
+                    <pre>
+                    <code data-trim class="bash">
+                        npm install karma-phantomjs-launcher --save-dev
+                    </code>
+                    </pre>
+                    <li>Enable PhantomJS plugin</li>
+                    <pre>
+                    <code data-trim class="bash">
+                        plugins : ['karma-jasmine', 'karma-phantomjs-launcher']
+                    </code>
+                    </pre>
+                    <li>Configure your browser</li>
+                    <pre>
+                    <code data-trim class="bash">
+module.exports = function(config) {
+    config.set({
+        browsers : ['PhantomJS']
+    });
+};
+                    </code>
+                    </pre>
+                </ul>
             </section>
 
         </section>
@@ -717,9 +752,45 @@ describe('FixedPhoneNumberDirective', function() {
 
             <section>
                 <h2>
-                    Coverage reports + sonar
+                    Coverage reports
                 </h2>
-                <p>...</p>
+                <ul>
+                    <li>Karma can generate coverage reports</li>
+                    <li>Uses istanbul.js behind the scenes</li>
+                    <li>Multiple report types</li>
+                    <ul>
+                        <li>HTML</li>
+                        <li>LCOV</li>
+                        <li>Text</li>
+                        <li>Cobertura</li>
+                    </ul>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    Karma coverage configuration
+                </h2>
+                <ul>
+                    <li>Add a preprocessor</li>
+                    <pre>
+                        <code data-trim class="js">
+                        preprocessors = {'**/lib/*.js': 'coverage'};
+                        </code>
+                    </pre>
+                    <li>Add a reporter</li>
+                    <pre>
+                        <code data-trim class="js">
+                        reporters = ['coverage'];
+                        </code>
+                    </pre>
+                    <li>Configure the reporter</li>
+                    <pre>
+                        <code data-trim class="js">
+                        coverageReporter = {type : 'lcovonly',dir : 'coverage/'}
+                        </code>
+                    </pre>
+                </ul>
             </section>
 
         </section>
