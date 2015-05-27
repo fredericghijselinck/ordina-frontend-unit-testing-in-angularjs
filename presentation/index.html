@@ -245,6 +245,7 @@
                 <h2>
                     Jasmine
                 </h2>
+
                 <p>▪ test suite with specs:</p>
                 <pre>
                     <code data-trim class="js">
@@ -286,6 +287,46 @@
                     <li>expect().toBeGreaterThan();</li>
                     <li>expect().toBeCloseTo();</li>
                     <li>expect().toThrow();</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    Jasmine - Faster testing
+                </h2>
+                <ul>
+                    <li>ddescribe</li>
+                    <pre>
+                        <code data-trim class="js">
+                        ddescribe("Run only this suite", function() {});
+                        </code>
+                    </pre>
+                    <li>xdescribe</li>
+                    <pre>
+                        <code data-trim class="js">
+                        xdescribe("this suite will be skipped", function() {});
+                        </code>
+                    </pre>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    Jasmine - Faster testing
+                </h2>
+                <ul>
+                    <li>iit</li>
+                    <pre>
+                        <code data-trim class="js">
+                        iit("only this test will be executed", function() {});
+                        </code>
+                    </pre>
+                    <li>xit</li>
+                    <pre>
+                        <code data-trim class="js">
+                        xit("this test will be skipped", function() {});
+                        </code>
+                    </pre>
                 </ul>
             </section>
 
