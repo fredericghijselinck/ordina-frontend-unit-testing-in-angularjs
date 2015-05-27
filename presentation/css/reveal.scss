@@ -367,7 +367,7 @@ body {
 
 	overflow: visible;
 	z-index: 1;
-	text-align: center;
+	text-align: left;
 	perspective: 600px;
 	perspective-origin: 50% 40%;
 }
@@ -1334,17 +1334,6 @@ body {
                 bottom:40px;
             }
         }
-
-        &#zurb {
-            background: #ddd;
-            width: 50%;
-        }
-
-        &#bootstrap {
-            background: #ddd;
-            width: 150px;
-            height: 150px;
-        }
     }
 
     h1 {
@@ -1391,7 +1380,7 @@ body {
 
         code {
             padding: 15px;
-            font-size: 1.2em;
+//            font-size: 1.2em;
             max-height: none;
         }
 
