@@ -209,7 +209,16 @@ karma start
                 <h2>
                     Unit testing frameworks
                 </h2>
-                <p>...</p>
+                <ul>
+                    <li>Several options</li>
+                    <ul>
+                        <li>Qunit</li>
+                        <li>Mocha</li>
+                        <li>Jasmine</li>
+                    </ul>
+                    <li>All similar, choose your own flavor</li>
+                    <li>Karma supports all</li>
+                </ul>
             </section>
 
             <section>
@@ -254,7 +263,20 @@ QUnit.test( "hello test", function( assert ) {
                 <h2>
                     Mocha
                 </h2>
-                <p>...</p>
+                <p>An example test</p>
+                <pre>
+                    <code data-trim class="js">
+var assert = require("assert")
+    describe('Array', function(){
+        describe('#indexOf()', function(){
+            it('should return -1 when the value is not present', function(){
+                assert.equal(-1, [1,2,3].indexOf(5));
+                assert.equal(-1, [1,2,3].indexOf(0));
+            })
+    })
+})
+                    </code>
+                </pre>
             </section>
 
             <section>
