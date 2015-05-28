@@ -14,7 +14,7 @@ in a commandline:
 
 ## Contents
 
-### example folder
+### solution folder
 
 contains the code of the AngularJS example(s)
 
