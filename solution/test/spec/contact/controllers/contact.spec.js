@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: ContactController', function () {
+xdescribe('Controller: ContactController', function () {
 
   // load the controller's module
   beforeEach(module('contact'));

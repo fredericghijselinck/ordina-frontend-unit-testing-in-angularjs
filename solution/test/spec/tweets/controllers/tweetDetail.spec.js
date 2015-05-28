@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: TweetDetailController', function () {
+xdescribe('Controller: TweetDetailController', function () {
 
   // load the controller's module
   beforeEach(module('tweets'));

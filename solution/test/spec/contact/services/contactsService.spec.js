@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: ContactService', function () {
+xdescribe('Service: ContactService', function () {
 
   // load the service's module
   beforeEach(module('contact'));

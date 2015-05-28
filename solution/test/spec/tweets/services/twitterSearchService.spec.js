@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: TwitterSearchService', function () {
+xdescribe('Service: TwitterSearchService', function () {
 
   // load the service's module
   beforeEach(module('tweets'));
