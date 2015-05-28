@@ -25,7 +25,7 @@ module.exports = function(config) {
       'app/scripts/**/module.js',
       'app/scripts/**',
       'test/mock/**',
-      'test/spec/**'
+      'test/spec/**/*.spec.js'
     ],
 
     // list of files / patterns to exclude
@@ -54,13 +54,13 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false,
+    singleRun: true,
 
     colors: true,
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_INFO
 
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {
