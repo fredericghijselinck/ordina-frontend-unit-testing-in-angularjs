@@ -1,0 +1,47 @@
+# *** IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+
+# *** OS X
+.DS_Store
+xcuserdata/
+*.pbxuser
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# *** Eclipse
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# NodeJS
+node_modules
+npm-debug.log
+
+# Bower
+bower_components
+
+# Grunt
+dist
+.tmp
+
+# Other
+.checkstyle
+.pmd
