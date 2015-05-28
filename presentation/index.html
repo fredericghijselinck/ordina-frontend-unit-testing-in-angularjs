@@ -160,7 +160,7 @@
                 <p>Install karma</p>
                 <pre>
                     <code data-trim class="bash">
-npm install karma
+npm install karma --save-dev
                     </code>
                 </pre>
                 <p>Automatically generate a config file</p>
@@ -216,18 +216,18 @@ karma start
                     <li>Install PhantomJS launcher</li>
                     <pre>
                     <code data-trim class="bash">
-                        npm install karma-phantomjs-launcher --save-dev
+ npm install karma-phantomjs-launcher --save-dev
                     </code>
                     </pre>
                     <li>Enable PhantomJS plugin</li>
                     <pre>
-                    <code data-trim class="bash">
-                        plugins : ['karma-jasmine', 'karma-phantomjs-launcher']
+                    <code data-trim class="js">
+plugins : ['karma-jasmine', 'karma-phantomjs-launcher']
                     </code>
                     </pre>
                     <li>Configure your browser</li>
                     <pre>
-                    <code data-trim class="bash">
+                    <code data-trim class="js">
 module.exports = function(config) {
     config.set({
         browsers : ['PhantomJS']
@@ -290,6 +290,15 @@ module.exports = function(config) {
                 <p>The contents of tests.js</p>
                 <pre>
                     <code data-trim class="js">
+QUnit.module( "group a" );
+QUnit.test( "a basic test example", function( assert ) {
+  assert.ok( true, "true succeeds" );
+});
+QUnit.test( "notOk test", function( assert ) {
+  assert.notOk( false, "false succeeds" );
+});
+
+QUnit.module( "group b" );
 QUnit.test( "hello test", function( assert ) {
     assert.ok( 1 == "1", "Passed!" );
 });
@@ -717,8 +726,8 @@ describe('FixedPhoneNumberDirective', function() {
 
     it("formatfixedphonewithcode", function() {
         givenTemplate();
-        givenFixedPhoneNumberWithNineDigits();
-        givenFormatFixedPhoneNumber();
+        $scope.fixedPhoneNumber = "025021910"; //givenFixedPhoneNumberWithNineDigits();
+        formattedFixedPhoneNumber = "02 / 502 19 10"; //givenFormatFixedPhoneNumber();
         whenFormatFixedPhoneNumber();
         thenFixedPhoneNumberIsFormatted();
     });
@@ -726,14 +735,6 @@ describe('FixedPhoneNumberDirective', function() {
     function givenTemplate() {
         var template = '<div data-fixed-phone-number-format="{{fixedPoneNumber}}">{{fixedPhoneNumber}}</div>';
         element = $compile(template)($scope);
-    }
-
-    function givenFixedPhoneNumberWithNineDigits() {
-        $scope.fixedPhoneNumber = "025021910";
-    }
-
-    function givenFormattedFixedPhoneNumber() {
-        formattedFixedPhoneNumber = "02 / 502 19 10";
     }
 
     function whenFormatFixedPhoneNumber() {
@@ -779,19 +780,19 @@ describe('FixedPhoneNumberDirective', function() {
                     <li>Add a preprocessor</li>
                     <pre>
                         <code data-trim class="js">
-                        preprocessors = {'**/lib/*.js': 'coverage'};
+preprocessors = {'**/lib/*.js': 'coverage'};
                         </code>
                     </pre>
                     <li>Add a reporter</li>
                     <pre>
                         <code data-trim class="js">
-                        reporters = ['coverage'];
+reporters = ['coverage'];
                         </code>
                     </pre>
                     <li>Configure the reporter</li>
                     <pre>
                         <code data-trim class="js">
-                        coverageReporter = {type : 'lcovonly',dir : 'coverage/'}
+coverageReporter = {type : 'lcovonly',dir : 'coverage/'}
                         </code>
                     </pre>
                 </ul>
